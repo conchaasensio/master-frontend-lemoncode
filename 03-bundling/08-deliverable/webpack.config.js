@@ -5,8 +5,11 @@ const path = require('path');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
   entry: {
-    app: './index.js',
+    app: './index.tsx',
   },
   output: {
     filename: '[name].[chunckhash].js',
@@ -15,14 +18,28 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              modules: {
+                exportLocalsConvention: 'camelCase',
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                localIdentContext: path.resolve(__dirname, 'src'),
+              },
+            },
+          },
+          'sass-loader',
+        ],
       },
       {
         test: /\.css$/,
@@ -32,6 +49,10 @@ module.exports = {
       {
         test: /\.(png|jpg)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader',
       },
     ],
   },
@@ -48,7 +69,11 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
   ],
+  devtool: 'eval-source-map',
   devServer: {
     port: 8080,
+    devMiddleware: {
+      stats: 'errors-only',
+    },
   },
 };

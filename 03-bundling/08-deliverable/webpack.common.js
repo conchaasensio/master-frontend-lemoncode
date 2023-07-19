@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
@@ -23,31 +22,7 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              modules: {
-                exportLocalsConvention: 'camelCase',
-                localIdentName: '[path][name]__[local]--[hash:base64:5]',
-                localIdentContext: path.resolve(__dirname, 'src'),
-              },
-            },
-          },
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      {
-        test: /\.(png|jpg)$/i,
+        test: /\.(png|jpg)$/,
         type: 'asset/resource',
       },
       {
@@ -63,17 +38,6 @@ module.exports = {
       template: './index.html', //Name of template in ./src
       scriptLoading: 'blocking', // Just use the blocking approach (no modern defer or module)
     }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-    }),
     new CleanWebpackPlugin(),
   ],
-  devtool: 'eval-source-map',
-  devServer: {
-    port: 8080,
-    devMiddleware: {
-      stats: 'errors-only',
-    },
-  },
 };

@@ -1,9 +1,12 @@
-$back-color: indianred;
+$green-color: rgb(178, 218, 190);
 
-.red-background {
-  background-color: $back-color;
- }
+h1 {
+  font-size: 40px;
+  color: $green-color;
+  font-weight: bold;
+}
 
- img {
+img {
+  display: block;
   width: 200px;
- }
+}

@@ -1,13 +1,11 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { AverageComponent } from './averageComponent';
-import { TotalScoreComponent } from './totalScoreComponent';
+import ReactDOM from 'react-dom';
+import logo from './content/logo_1.png';
 
-const root = createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <div>
-    <h1>Hello from React DOM</h1>
-    <AverageComponent />
-    <TotalScoreComponent />
-  </div>
+    <h1>Hello World!</h1>
+    <img src={logo} />
+  </div>,
+  document.getElementById('root')
 );

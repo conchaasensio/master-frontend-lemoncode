@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import logo from './content/logo_1.png';
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <div>
     <h1>Hello World!</h1>
     <img src={logo} />
-  </div>,
-  document.getElementById('root')
+  </div>
 );

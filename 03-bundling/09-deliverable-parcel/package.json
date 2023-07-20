@@ -1,0 +1,21 @@
+{
+  "name": "09-deliverable-parcel",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "rimraf dist && parcel ./src/index.html",
+    "build": "rimraf dist && parcel build ./src/index.html"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.9.3"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.1"
+  }
+}

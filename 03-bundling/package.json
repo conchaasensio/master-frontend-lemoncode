@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "webpack-merge": "^5.9.0",
+    "parcel": "^2.9.3"
+  }
+}

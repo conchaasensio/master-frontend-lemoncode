@@ -1,0 +1,161 @@
+@import "./reset.scss";
+@import "./variables";
+
+body {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header"
+    "sidebar main main main"
+    "footer footer footer footer";
+
+  @media screen and (max-width: $tablet) {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+  }
+
+  header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .page-title {
+      background-color: $lightBlue;
+      padding: 20px 10px;
+      color: $primaryColor;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    @media screen and (max-width: $tablet) {
+      margin-bottom: 0px;
+      .toolbar {
+        display: none;
+      }
+    }
+  }
+
+  nav {
+    grid-area: sidebar;
+    width: 100%;
+    height: 100%;
+    position: sticky;
+    top: 0;
+    background: $darkBlue;
+
+    .menu {
+      position: sticky;
+      top: 0;
+      padding: 10px;
+
+      &--title {
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 3px;
+
+        @media screen and (max-width: $tablet) {
+          display: none;
+        }
+      }
+
+      &--list {
+        padding: 0;
+        li {
+          list-style-type: none;
+          background: $mediumBlue;
+          padding: 10px;
+          margin: 10px;
+          border-radius: 10px;
+          border-bottom: 1px solid $primaryColor;
+        }
+
+        @media screen and (max-width: $tablet) {
+          display: flex;
+          gap: 30px;
+
+          li {
+            width: 100%;
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    grid-area: main;
+    padding: 10px;
+
+    .list {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      @media screen and (max-width: $tablet) {
+        flex-direction: column;
+      }
+
+      .card {
+        width: 200px;
+        height: 150px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        border-radius: 20px;
+        border: 3px solid $lightBlue;
+
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+        }
+
+        .member-name {
+          text-align: center;
+        }
+
+        @media screen and (max-width: $tablet) {
+          width: 100%;
+          padding: 0px;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          align-items: center;
+          justify-content: flex-start;
+
+          img {
+            padding-left: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    grid-area: footer;
+    background-color: $darkBlue;
+    color: $primaryColor;
+    padding: 10px;
+    margin-top: 10px;
+  }
+}
